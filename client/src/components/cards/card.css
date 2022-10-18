@@ -1,0 +1,48 @@
+.card-deck{
+    display: flex;
+
+}
+.card{
+    display: flex;
+    flex-direction: column;
+    height: 18rem;
+    margin: 10px;
+    padding: 10px;
+    width: 25rem;
+
+
+}
+.card-body{
+    display: flex;
+
+}
+.card-img-top{
+    display: flex;
+    height: 14rem;
+    margin: auto;
+    width: 10rem;
+}
+.card-title{
+    display: flex;
+    color: black;
+    font-size: 20px;
+    font-family: 'Times New Roman', Times, serif
+}
+.card-text{
+    display: flex;
+    color: black;
+    font-size: 14px;
+    font-family: 'Times New Roman', Times, serif;
+    margin-top: 100px;
+}
+.card-footer{
+    display: flex;
+    font-family: 'Times New Roman', Times, serif;
+}
+.text-muted{
+    display: flex;
+    font-family: 'Times New Roman', Times, serif;
+    /* flex-direction: row-reverse;
+    justify-content: center; */
+    margin: auto;
+}
