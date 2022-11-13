@@ -5,7 +5,6 @@ const connectToDB = require('./db');
 const router = require("./routes/books.route");
 const PORT = 8000;
 
-
 //Database Connecting
 connectToDB();
 MyBooksApp.use(cors());
