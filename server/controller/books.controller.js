@@ -1,89 +1,68 @@
 const Book = require("../model/books.model");
 
-async function getAllBooks (req, res, next) {
-  let books;
-  try {
-    books = await Book.find();
-  } catch (err) {
-    console.log(err);
-  }
-
-  if (!books) {
-    return res.status(404).json({ message: "No products found" });
-  }
-  return res.status(200).json({ books });
+async function addBooks(req, resp) {
+  let book = new Book(req.body);
+  let result = await book.save();
+  resp.send(result);
 };
 
-async function getById (req, res, next) {
-  const id = req.params.id;
-  let book;
-  try {
-    book = await Book.findById(id);
-  } catch (err) {
-    console.log(err);
+async function getBooks(req, resp) {
+  const books = await Book.find();
+  if (books.length > 0) {
+    resp.send(books)
+  } else {
+    resp.send({ result: "No Book Found" })
   }
-  if (!book) {
-    return res.status(404).json({ message: "No Book found" });
-  }
-  return res.status(200).json({ book });
 };
 
-async function addBooks (req, res, next) {
-  const { name, author, description, price, available } = req.body;
-  let book;
-  try {
-    book = new Book({
-      name,
-      author,
-      description,
-      price,
-      available
-    });
-    await book.save();
-  } catch (err) {
-    console.log(err);
-  }
-
-  if (!book) {
-    return res.status(500).json({ message: "Unable To Add" });
-  }
-  return res.status(201).json({ book });
+async function deleteBooks(req, resp) {
+  let result = await Book.deleteOne({ _id: req.params.id });
+  resp.send(result)
 };
 
-async function updateBooks (req, res, next) {
-  const id = req.params.id;
-  const { name, author, description, price, available } = req.body;
-  let book;
-  try {
-    book = await Book.findByIdAndUpdate(id, {
-      name,
-      author,
-      description,
-      price,
-      available
-    });
-    book = await book.save();
-  } catch (err) {
-    console.log(err);
+async function getBookById(req, resp) {
+  let result = await Book.findOne({ _id: req.params.id })
+  if (result) {
+    resp.send(result)
+  } else {
+    resp.send({ "result": "No Record Found." })
   }
-  if (!book) {
-    return res.status(404).json({ message: "Unable To Update By This ID" });
-  }
-  return res.status(200).json({ book });
 };
 
-async function deleteBooks (req, res, next) {
-  const id = req.params.id;
-  let book;
-  try {
-    book = await Book.findByIdAndRemove(id);
-  } catch (err) {
-    console.log(err);
-  }
-  if (!book) {
-    return res.status(404).json({ message: "Unable To Delete By This ID" });
-  }
-  return res.status(200).json({ message: "Product Successfully Deleted" });
+async function updateBook(req, resp) {
+  let result = await Book.updateOne(
+    { _id: req.params.id },
+    { $set: req.body }
+  )
+  resp.send(result)
 };
 
-module.exports = { getAllBooks, getById, addBooks, updateBooks, deleteBooks };
+async function updateBooks(req, resp) {
+  let result = await Book.updateOne(
+    { _id: req.params.id },
+    { $set: req.body }
+  )
+  resp.send(result)
+};
+
+async function getSearch(req, resp) {
+  let result = await Book.find({
+    "$or": [
+      {
+        name: { $regex: req.params.key }
+      },
+      {
+        author: { $regex: req.params.key }
+      },
+      {
+        category: { $regex: req.params.key }
+      },
+      {
+        price: { $regex: req.params.key }
+      }
+    ]
+  });
+  resp.send(result);
+};
+
+module.exports = { addBooks, getBookById, getBooks, deleteBooks, updateBook, updateBooks, getSearch };
