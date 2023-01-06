@@ -7,8 +7,8 @@ function Navbar() {
     <div className="container">
       <header className="header">
         <nav className="nav">
-          <p className="brand"><img src={logo} alt ="logo"/>
-             MY BOOKS APP
+          <p className="brand"><img src={logo} alt="logo" />
+            MY BOOKS APP
           </p>
           <span></span>
           <span></span>

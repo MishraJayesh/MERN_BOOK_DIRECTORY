@@ -1,16 +1,16 @@
-.nav{
+.nav {
   background-color: cadetblue;
   display: flex;
   height: 70px;
   width: 1520px;
   padding: 4px;
   margin: 4px;
-  border-radius:5px;
+  border-radius: 5px;
 }
-.brand{
+.brand {
   color: white;
   font-size: 16px;
-  font-family: 'Times New Roman', Times, serif;
+  font-family: "Times New Roman", Times, serif;
   text-align: center;
   margin-top: 10px;
   cursor: pointer;
@@ -22,7 +22,7 @@ img {
   height: 30px;
   cursor: pointer;
 }
-.wrapper{
+.wrapper {
   display: flex;
   margin-left: auto;
 }
@@ -48,21 +48,21 @@ ul li ul {
   width: 200px;
   display: none;
 }
-ul li ul li { 
+ul li ul li {
   background: burlywood;
   display: block;
   text-align: center;
 }
 ul li ul li a {
-  display:block;
-} 
+  display: block;
+}
 ul li ul li:hover {
   background: white;
 }
 .nav-link {
   color: white;
   font-size: 16px;
-  font-family: 'Times New Roman', Times, serif;
+  font-family: "Times New Roman", Times, serif;
   margin-top: 0;
   padding: 25px;
   display: flex;
